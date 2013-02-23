@@ -24,10 +24,12 @@ fi
 
 # get the file
 date=`date +%Y-%m-%d.%H:%M:%S`
-if http $sess https://$u.wordpress.com/wp-admin/export.php?download=true > backups/$u.$date.xml 2>> $logFile; then
-	echo File saved successfully.
+file=backups/$u.$date.xml
+if http $sess https://$u.wordpress.com/wp-admin/export.php?download=true > $file 2>> $logFile; then
+	echo File \'$file\' created.
 else 
 	case $? in
-		*) Unexpected error ocurred! Please check $logFile ;;
+		*) echo Unexpected error ocurred! Please check $logFile
+			exit 1;;
 	esac
 fi
