@@ -30,7 +30,7 @@ fi
 
 # get the file
 date=`date +%Y-%m-%d.%H:%M:%S`
-file=backups/$u.$date.xml
+file=$backupFolder/$u.$date.xml
 if http $sess https://$u.wordpress.com/wp-admin/export.php?download=true > $file 2>> $logFile; then
 	filesize=`du -h $file`
 	echolog File created. \($filesize\).
