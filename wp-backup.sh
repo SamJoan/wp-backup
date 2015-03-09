@@ -11,8 +11,7 @@ sess='--check-status --session=wp-bak'
 
 # Log all echo.
 function echolog {
-	echo $@
-	echo $@ >> $logFile
+	echo "${@}" | tee $logfile
 }
 
 # login
